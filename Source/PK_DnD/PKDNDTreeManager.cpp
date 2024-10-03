@@ -7,10 +7,13 @@ APKDNDTreeManager::APKDNDTreeManager()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	mMaxDepth = 3;
+
+	// ---- Extra stuff for Unreal ----
 	mObjectSpacing = 200.f;
 	ColorDelayInterval = 0.5f;
 	BreadthSearchColor = FLinearColor::Red;
 	DepthSearchColor = FLinearColor::Blue;
+	// ----------------------------------
 }
 
 void APKDNDTreeManager::BeginPlay()
@@ -27,8 +30,11 @@ void APKDNDTreeManager::Tick(float DeltaTime)
 
 void APKDNDTreeManager::BuildTree()
 {
+	// ---- Extra stuff for Unreal ----
 	FActorSpawnParameters SpawnParams;
 	mRootNode = GetWorld()->SpawnActor<APKDNDTreeNode>(NodeObject, GetActorLocation(), FRotator::ZeroRotator, SpawnParams);
+	// ----------------------------------
+
 	mRootNode->mData = 1;
 
 	CreateChildren(mRootNode, 1, mMaxDepth);
@@ -43,10 +49,13 @@ void APKDNDTreeManager::CreateChildren(APKDNDTreeNode* ParentNode, int32 Current
 
 	int32 AmountOfChildren = ParentNode->mMaxChildren;
 
+	// ---- Extra stuff for spawning and position in Unreal ----
 	float Radius = FMath::Max(mObjectSpacing, mObjectSpacing * (MaxDepth - CurrentDepth));
+	// ----------------------------------------------------
 
 	for (int32 i = 0; i < AmountOfChildren; ++i)
 	{
+		// ---- Extra stuff for spawning and position in Unreal ----
 		float Angle = (360.f / AmountOfChildren) * i;
 		float Rad = FMath::DegreesToRadians(Angle);
 
@@ -55,6 +64,9 @@ void APKDNDTreeManager::CreateChildren(APKDNDTreeNode* ParentNode, int32 Current
 
 		FActorSpawnParameters SpawnParams;
 		APKDNDTreeNode* ChildNode = GetWorld()->SpawnActor<APKDNDTreeNode>(NodeObject, ChildLocation, FRotator::ZeroRotator, SpawnParams);
+		// ----------------------------------------------------
+
+
 		ChildNode->mData = ParentNode->mData * 10 + i + 1;
 		ChildNode->mMaxChildren = ParentNode->mMaxChildren;
 
@@ -64,6 +76,8 @@ void APKDNDTreeManager::CreateChildren(APKDNDTreeNode* ParentNode, int32 Current
 	}
 }
 
+
+// ---- DO NOT WORRIE ABOUT THE STUFF BELOW ----
 void APKDNDTreeManager::DepthFirstTraversal()
 {
 	if (mRootNode)

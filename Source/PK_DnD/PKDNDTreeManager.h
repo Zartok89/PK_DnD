@@ -31,6 +31,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "TreeManager")
 	void CreateChildren(APKDNDTreeNode* ParentNode, int32 CurrentDepth, int32 MaxDepth);
 
+
+	// ---- DO NOT WORRIE ABOUT THE STUFF IN HERE ----
 	UFUNCTION(BlueprintCallable, Category = "TreeManager")
 	void DepthFirstTraversal();
 	void DepthFirstTraversalHelper(APKDNDTreeNode* Node, TArray<APKDNDTreeNode*>& TraversalNodes);
@@ -38,6 +40,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "TreeManager")
 	void BreadthFirstTraversal();
 	void StartColorChangeSequence(const TArray<APKDNDTreeNode*>& Nodes, FLinearColor Color);
+	// ------------------------------------------------
 
 
 	/*
@@ -55,6 +58,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TreeManager")
 	TSubclassOf<AActor> NodeObject;
 
+
+	// ---- DO NOT WORRIE ABOUT THE STUFF BELOW ----
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TreeManager")
 	float ColorDelayInterval;
 

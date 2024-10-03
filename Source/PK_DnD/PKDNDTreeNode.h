@@ -16,12 +16,11 @@ class PK_DND_API APKDNDTreeNode : public AActor
 protected:
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Default Constructor
 	APKDNDTreeNode();
 
 	virtual void Tick(float DeltaTime) override;
-
 
 	/*
 	 * Functions
@@ -29,8 +28,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "TreeNode")
 	void AddChild(APKDNDTreeNode* ChildNode);
 
+
+	// ---- DO NOT WORRIE ABOUT THE STUFF IN HERE ----
 	UFUNCTION(BlueprintCallable, Category = "TreeNode")
-    void SetNodeColor(const FLinearColor& NewColor); 
+	void SetNodeColor(const FLinearColor& NewColor);
+	// ------------------------------------------------
+
 
 	/*
 	 * Variables
@@ -41,9 +44,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TreeNode")
 	int32 mMaxChildren;
 
+	// ---- Extra stuff for Unreal ----
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TreeNode")
 	TArray<APKDNDTreeNode*> mNodeChildren;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TreeNode")
 	UStaticMeshComponent* MeshComponent;
+	// ----------------------------------
 };

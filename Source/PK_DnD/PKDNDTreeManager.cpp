@@ -109,7 +109,7 @@ void APKDNDTreeManager::BreadthFirstTraversal()
         {  
             TraversalNodes.Add(CurrentNode);  
 
-            for (APKDNDTreeNode* Child : CurrentNode->mNodeChildren)  
+            for (APKDNDTreeNode* Child : CurrentNode->mChildren)  
             {  
                 NodeQueue.Enqueue(Child);  
             }  
@@ -130,7 +130,7 @@ void APKDNDTreeManager::DepthFirstTraversalHelper(APKDNDTreeNode* Node, TArray<A
 
 	UE_LOG(LogTemp, Log, TEXT("Visited Node with Data: %d"), Node->mData);
 
-	for (APKDNDTreeNode* Child : Node->mNodeChildren)
+	for (APKDNDTreeNode* Child : Node->mChildren)
 	{
 		DepthFirstTraversalHelper(Child, TraversalNodes);
 	}

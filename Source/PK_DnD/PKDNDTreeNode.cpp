@@ -27,7 +27,7 @@ void APKDNDTreeNode::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	// ---- Extra stuff for Unreal ----
-	for (APKDNDTreeNode* Child : mNodeChildren)
+	for (APKDNDTreeNode* Child : mChildren)
 	{
 		if (Child)
 		{
@@ -39,9 +39,9 @@ void APKDNDTreeNode::Tick(float DeltaTime)
 
 void APKDNDTreeNode::AddChild(APKDNDTreeNode* ChildNode)
 {
-	if (mNodeChildren.Num() < mMaxChildren && ChildNode)
+	if (mChildren.Num() < mMaxChildren && ChildNode)
 	{
-		mNodeChildren.Add(ChildNode);
+		mChildren.Add(ChildNode);
 	}
 }
 

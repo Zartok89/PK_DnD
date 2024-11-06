@@ -24,13 +24,13 @@ void APKTreeNode::Tick(float DeltaTime)
 		if (Child)
 		{
 			DrawDebugLine(
-				GetWorld(), 
-				GetActorLocation(), 
-				Child->GetActorLocation(), 
-				FColor::Green, 
-				false, 
-				0.5f, 
-				0, 
+				GetWorld(),
+				GetActorLocation(),
+				Child->GetActorLocation(),
+				FColor::Green,
+				false,
+				0.5f,
+				0,
 				5.f);
 		}
 	}

@@ -6,12 +6,10 @@ APKDNDTreeNode::APKDNDTreeNode()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-
 	// ---- Extra stuff for Unreal ----
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
 	RootComponent = MeshComponent;
 	// ----------------------------------
-
 
 	mData = 0;
 	mMaxChildren = 2;
@@ -44,7 +42,6 @@ void APKDNDTreeNode::AddChild(APKDNDTreeNode* ChildNode)
 		mChildren.Add(ChildNode);
 	}
 }
-
 
 // ---- DO NOT WORRIE ABOUT THE STUFF BELOW ----
 void APKDNDTreeNode::SetNodeColor(const FLinearColor& NewColor)

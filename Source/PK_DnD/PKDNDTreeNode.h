@@ -28,12 +28,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "TreeNode")
 	void AddChild(APKDNDTreeNode* ChildNode);
 
-
 	// ---- DO NOT WORRIE ABOUT THE STUFF IN HERE ----
 	UFUNCTION(BlueprintCallable, Category = "TreeNode")
 	void SetNodeColor(const FLinearColor& NewColor);
 	// ------------------------------------------------
-
 
 	/*
 	 * Variables

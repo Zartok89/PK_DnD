@@ -66,7 +66,6 @@ void APKDNDTreeManager::CreateChildren(APKDNDTreeNode* ParentNode, int32 Current
 		APKDNDTreeNode* ChildNode = GetWorld()->SpawnActor<APKDNDTreeNode>(NodeObject, ChildLocation, FRotator::ZeroRotator, SpawnParams);
 		// ----------------------------------------------------
 
-
 		ChildNode->mData = ParentNode->mData * 10 + i + 1;
 		ChildNode->mMaxChildren = ParentNode->mMaxChildren;
 
@@ -75,7 +74,6 @@ void APKDNDTreeManager::CreateChildren(APKDNDTreeNode* ParentNode, int32 Current
 		CreateChildren(ChildNode, CurrentDepth + 1, MaxDepth);
 	}
 }
-
 
 // ---- DO NOT WORRIE ABOUT THE STUFF BELOW ----
 void APKDNDTreeManager::DepthFirstTraversal()
@@ -90,33 +88,33 @@ void APKDNDTreeManager::DepthFirstTraversal()
 
 void APKDNDTreeManager::BreadthFirstTraversal()
 {
-    if (!mRootNode)  
-    {  
-        return;  
-    }  
+	if (!mRootNode)
+	{
+		return;
+	}
 
-    TQueue<APKDNDTreeNode*> NodeQueue;  
-    TArray<APKDNDTreeNode*> TraversalNodes;  
+	TQueue<APKDNDTreeNode*> NodeQueue;
+	TArray<APKDNDTreeNode*> TraversalNodes;
 
-    NodeQueue.Enqueue(mRootNode);  
+	NodeQueue.Enqueue(mRootNode);
 
-    while (!NodeQueue.IsEmpty())  
-    {  
-        APKDNDTreeNode* CurrentNode;  
-        NodeQueue.Dequeue(CurrentNode);  
+	while (!NodeQueue.IsEmpty())
+	{
+		APKDNDTreeNode* CurrentNode;
+		NodeQueue.Dequeue(CurrentNode);
 
-        if (CurrentNode)  
-        {  
-            TraversalNodes.Add(CurrentNode);  
+		if (CurrentNode)
+		{
+			TraversalNodes.Add(CurrentNode);
 
-            for (APKDNDTreeNode* Child : CurrentNode->mChildren)  
-            {  
-                NodeQueue.Enqueue(Child);  
-            }  
-        }  
-    }  
+			for (APKDNDTreeNode* Child : CurrentNode->mChildren)
+			{
+				NodeQueue.Enqueue(Child);
+			}
+		}
+	}
 
-    StartColorChangeSequence(TraversalNodes, BreadthSearchColor);  
+	StartColorChangeSequence(TraversalNodes, BreadthSearchColor);
 }
 
 void APKDNDTreeManager::DepthFirstTraversalHelper(APKDNDTreeNode* Node, TArray<APKDNDTreeNode*>& TraversalNodes)
@@ -138,22 +136,22 @@ void APKDNDTreeManager::DepthFirstTraversalHelper(APKDNDTreeNode* Node, TArray<A
 
 void APKDNDTreeManager::StartColorChangeSequence(const TArray<APKDNDTreeNode*>& Nodes, FLinearColor Color)
 {
-    for (int32 Index = 0; Index < Nodes.Num(); ++Index)  
-    {  
-        float Delay = Index * ColorDelayInterval;  
-        FTimerHandle TimerHandle;  
-        FTimerDelegate TimerDelegate;  
+	for (int32 Index = 0; Index < Nodes.Num(); ++Index)
+	{
+		float Delay = Index * ColorDelayInterval;
+		FTimerHandle TimerHandle;
+		FTimerDelegate TimerDelegate;
 
-        APKDNDTreeNode* NodeToColor = Nodes[Index];  
+		APKDNDTreeNode* NodeToColor = Nodes[Index];
 
-        TimerDelegate.BindLambda([NodeToColor, Color]()  
-        {  
-            if (NodeToColor)  
-            {  
-                NodeToColor->SetNodeColor(Color);  
-            }  
-        });  
+		TimerDelegate.BindLambda([NodeToColor, Color]()
+			{
+				if (NodeToColor)
+				{
+					NodeToColor->SetNodeColor(Color);
+				}
+			});
 
-        GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, Delay, false);  
-    }  
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, Delay, false);
+	}
 }

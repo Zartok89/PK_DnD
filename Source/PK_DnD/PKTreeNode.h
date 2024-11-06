@@ -34,5 +34,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TreeNode")
 	UStaticMeshComponent* MeshComponent;
-
 };
